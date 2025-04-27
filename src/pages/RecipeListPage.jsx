@@ -1,13 +1,19 @@
-import { Center, Heading } from '@chakra-ui/react';
-import { data } from '../utils/data';
+import { RecipeSearch } from "../components/RecipeSearch";
+import { Heading } from "@chakra-ui/react";
 
-export const RecipeListPage = () => {
-  // You can play around with the console log, but ultimately remove it once you are done
-  console.log(data.hits[0].recipe.label);
-
+export const RecipeListPage = ({ clickFn }) => {
   return (
-    <Center h="100vh" flexDir="column">
-      <Heading>Your Recipe App</Heading>
-    </Center>
+    <>
+      <Heading
+        size={["xl", "2xl"]}
+        textAlign={"center"}
+        marginTop={10}
+        color={"teal.700"}
+        p={10}
+      >
+        All These Recipes
+      </Heading>
+      <RecipeSearch clickFn={clickFn} />
+    </>
   );
 };
