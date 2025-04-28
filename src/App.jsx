@@ -1,5 +1,5 @@
 import { RecipeListPage } from "./pages/RecipeListPage";
-import { RecipePage } from "./pages/RecipePage"; // Make sure to import this!
+import { RecipePage } from "./pages/RecipePage";
 import { useState } from "react";
 
 export const App = () => {
@@ -18,7 +18,7 @@ export const App = () => {
   return (
     <>
       {userRecipe === null ? (
-        <RecipeListPage clickFn={handleRecipeButton} />
+        <RecipeListPage recipeClick={handleRecipeButton} />
       ) : (
         <RecipePage recipe={userRecipe} backClick={handleBack} />
       )}

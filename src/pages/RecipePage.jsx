@@ -8,6 +8,7 @@ import {
   VStack,
   Grid,
   GridItem,
+  Flex,
 } from "@chakra-ui/react";
 import { DietLabels } from "../components/ui/DietLabels";
 import { HealthLabels } from "../components/ui/HealthLabels";
@@ -42,12 +43,13 @@ export const RecipePage = ({ recipe, backClick }) => {
       columnGap={10}
       borderWidth="1px"
       borderRadius="lg"
-      maxWidth="1000px"
+      maxWidth="1200px"
       height="auto"
       margin="auto"
       boxShadow="lg"
     >
       <GridItem area="header" marginBottom={8}>
+        {/* The Recipe Image */}
         <Image
           src={image}
           alt={recipe.recipe.label}
@@ -56,31 +58,39 @@ export const RecipePage = ({ recipe, backClick }) => {
           objectFit="cover"
           objectPosition="center"
         />
+        {/* A subtle Backbotton to navigate back to RecipeListPage */}
         <IconButton
           aria-label="Back"
+          color="teal.600"
           icon={<ChevronLeftIcon />}
           onClick={() => backClick()}
           position="relative"
           size={["md", "lg"]}
           variant="ghost"
+          _hover={{
+            boxShadow: "lg",
+          }}
         ></IconButton>
       </GridItem>
 
-      <GridItem area="recipe" margin={5} marginTop={0}>
-        <Heading size="sm" color="teal.700">
+      {/* Recipe Information */}
+      <GridItem area="recipe" px={3}>
+        <Heading size="sm" color="teal.600">
           {recipe.recipe.mealType}
         </Heading>
-        <Heading>{label}</Heading>
-        <Heading fontSize="xsm" color="gray.500" mt={2}>
+        <Heading color="teal.900">{label}</Heading>
+        <Heading fontSize="xsm" color="teal.600" mt={2}>
           Cooking Time: {totalTime} minutes
           <br />
           Servings: {recipe.recipe.yield}
         </Heading>
         <Divider my={4} />
-        <Heading size="md" marginBottom={2}>
+
+        {/*Ingredient List */}
+        <Heading size="md" color="teal.700" marginBottom={2}>
           Ingredients:
         </Heading>
-        <VStack align="start" spacing={2}>
+        <VStack align="start" spacing={2} color="teal.900">
           {ingredientLines.map((ingredient, index) => (
             <Checkbox key={index} colorScheme="green">
               {ingredient}
@@ -89,26 +99,42 @@ export const RecipePage = ({ recipe, backClick }) => {
         </VStack>
       </GridItem>
 
-      <GridItem
-        area="labels"
-        alignContent={"center"}
-        display={"flex"}
-        flexDirection={"column"}
-        gap={2}
-        margin={5}
-      >
-        <Heading size="xsm">Health labels</Heading>
-        <HealthLabels recipe={recipe} onlyCore={false} />
-        {cautions.length > 0 && <Heading size="sm">Cautions</Heading>}
-        <Cautions recipe={recipe} />
-        {dietLabels.length > 0 && <Heading size="sm">Diet</Heading>}
-        <DietLabels recipe={recipe} />
-        <Divider my={2} />
-        <TotalNutrients recipe={recipe} />
+      {/* Health Labels, Cautions, and diet information*/}
+      <GridItem area="labels" p={3}>
+        <Divider my={4}></Divider>
+        <Heading size="xsm" color="teal.700" py={3}>
+          Health labels
+        </Heading>
+        <Flex wrap={"wrap"} align={"flex-start"} gap={3}>
+          <HealthLabels recipe={recipe} coreDietlabels={false} />
+        </Flex>
+
+        {cautions.length > 0 && (
+          <Heading size="sm" color="teal.700" py={3}>
+            Cautions
+          </Heading>
+        )}
+        <Flex wrap={"wrap"} align={"flex-start"} gap={3}>
+          <Cautions recipe={recipe} />
+        </Flex>
+
+        {dietLabels.length > 0 && (
+          <Heading size="sm" color="teal.700" py={3}>
+            Diet
+          </Heading>
+        )}
+        <Flex wrap={"wrap"} align={"flex-start"} gap={3}>
+          <DietLabels recipe={recipe} />
+        </Flex>
+
+        {/* Nutrient list */}
+        <Divider my={8} />
+        <TotalNutrients recipe={recipe} color="teal.800" />
       </GridItem>
 
+      {/* Another backbutton navigating to RecipeListPage */}
       <GridItem area="footer">
-        <Button onClick={() => backClick()} width="100%">
+        <Button onClick={() => backClick()} width="100%" color="teal.800">
           Back
         </Button>
       </GridItem>

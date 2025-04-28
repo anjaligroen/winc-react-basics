@@ -4,19 +4,19 @@ import {
   Heading,
   CardBody,
   Image,
-  Text,
   Divider,
+  Flex,
 } from "@chakra-ui/react";
 import { DietLabels } from "./ui/DietLabels";
 import { Cautions } from "./ui/Cautions";
 import { HealthLabels } from "./ui/HealthLabels";
 
-export const RecipeCard = ({ recipe, clickFn }) => {
+export const RecipeCard = ({ recipe, recipeClick }) => {
   const { image, label, mealType, dishType } = recipe.recipe;
 
   return (
     <Card
-      onClick={() => clickFn(recipe)}
+      onClick={() => recipeClick(recipe)}
       cursor="pointer"
       size="sm"
       width={["320px", "sm"]}
@@ -25,9 +25,9 @@ export const RecipeCard = ({ recipe, clickFn }) => {
       borderRadius="lg"
       boxShadow="lg"
       _hover={{
-        boxShadow: "xl", // Increases shadow when hovered
-        transform: "scale(1.05)", // Slightly enlarges the card
-        transition: "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out", // Smooth transition for scaling and shadow
+        boxShadow: "xl",
+        transform: "scale(1.05)",
+        transition: "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out",
       }}
     >
       <Image
@@ -51,24 +51,18 @@ export const RecipeCard = ({ recipe, clickFn }) => {
         <Heading size="md" color="teal.700">
           {label}
         </Heading>
-        <Text fontSize="md" color="teal" mt={2}>
+        <Heading size="sm" color="teal.600" marginTop={2}>
           {mealType}, {dishType}
-        </Text>
-        <Divider my={0} marginTop={4} color={"teal"} />
+        </Heading>
+        <Divider mt={4} />
       </CardHeader>
 
-      <CardBody
-        display="flex"
-        flexWrap="wrap"
-        justifyContent="center"
-        alignContent="center"
-        gap={3}
-        marginBottom={3}
-        padding={4}
-      >
-        <HealthLabels recipe={recipe} onlyCore={true} />
-        <DietLabels recipe={recipe} />
-        <Cautions recipe={recipe} />
+      <CardBody p={4} alignContent={"center"} mb={5}>
+        <Flex flexWrap="wrap" justifyContent="center" gap={3}>
+          <HealthLabels recipe={recipe} coreDietlabels={true} />
+          <DietLabels recipe={recipe} />
+          <Cautions recipe={recipe} />
+        </Flex>
       </CardBody>
     </Card>
   );

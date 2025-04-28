@@ -1,12 +1,12 @@
-import { Flex, Tag } from "@chakra-ui/react";
+import { Tag } from "@chakra-ui/react";
 
 export const Cautions = ({ recipe }) => {
   const cautions = recipe.recipe.cautions;
 
   return (
-    cautions.length > 0 && (
-      <Flex flexWrap="wrap" gap={2} justifyContent="center" align="flex-start">
-        {cautions.map((label) => (
+    <>
+      {cautions.length > 0 &&
+        cautions.map((label) => (
           <Tag
             key={label}
             size={["sm", "md"]}
@@ -17,7 +17,6 @@ export const Cautions = ({ recipe }) => {
             {label}
           </Tag>
         ))}
-      </Flex>
-    )
+    </>
   );
 };

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { data } from "../utils/data";
 import { RecipeList } from "./RecipeList";
-import { Input, Box, Flex } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { Toggle } from "./ui/Toggle";
+import { InputUI } from "./ui/InputUI";
 
-export const RecipeSearch = ({ clickFn }) => {
+export const RecipeSearch = ({ recipeClick }) => {
   const [searchField, setSearchField] = useState("");
   const [isVegan, setIsVegan] = useState(false);
   const [isVegetarian, setIsVegetarian] = useState(false);
@@ -37,30 +38,12 @@ export const RecipeSearch = ({ clickFn }) => {
       justifyContent={"center"}
       mt={8}
     >
-      <Input
+      <InputUI
         value={searchField}
         onChange={handleChange}
-        variant="unstyled"
-        padding={3}
-        placeholder="Search for Recipes"
-        textAlign={"center"}
-        w="300px"
+        placeholder="Search..."
         mb={8}
-        borderRadius="lg"
-        boxShadow="lg"
-        _hover={{
-          boxShadow: "xl",
-          transform: "scale(1.05)",
-          transition: "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out",
-        }}
-        _focus={{
-          boxShadow: "xl",
-          borderColor: "BlackAlpha.700",
-          transition: "border-color 0.3s ease-in-out",
-        }}
-        _placeholder={{ color: "gray.500" }}
       />
-
       <Flex justifyContent={"space-around"} width="300px" mb={8}>
         <Toggle
           text="Vegetarian"
@@ -73,7 +56,7 @@ export const RecipeSearch = ({ clickFn }) => {
           colorScheme="green"
         ></Toggle>
       </Flex>
-      <RecipeList clickFn={clickFn} recipes={filteredRecipes} />
+      <RecipeList recipeClick={recipeClick} recipes={filteredRecipes} />
     </Box>
   );
 };

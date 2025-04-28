@@ -1,11 +1,11 @@
-import { Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 
-export const TotalNutrients = ({ recipe }) => {
+export const TotalNutrients = ({ recipe, ...styleProps }) => {
   const { ENERC_KCAL, FAT, CHOCDF, PROCNT, FIBTG, SUGAR } =
     recipe.recipe.totalNutrients;
 
   return (
-    <div>
+    <Box {...styleProps}>
       <Text>
         <strong>Calories:</strong> {Math.round(ENERC_KCAL.quantity)} kcal
       </Text>
@@ -24,6 +24,6 @@ export const TotalNutrients = ({ recipe }) => {
       <Text>
         <strong>Fiber:</strong> {Math.round(FIBTG.quantity)} g
       </Text>
-    </div>
+    </Box>
   );
 };

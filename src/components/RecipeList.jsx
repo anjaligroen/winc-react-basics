@@ -1,7 +1,7 @@
 import { RecipeCard } from "./RecipeCard";
 import { Flex, Box } from "@chakra-ui/react";
 
-export const RecipeList = ({ recipes, clickFn }) => {
+export const RecipeList = ({ recipes, recipeClick }) => {
   return (
     <Flex
       flexWrap="wrap"
@@ -20,7 +20,7 @@ export const RecipeList = ({ recipes, clickFn }) => {
           display="flex"
           justifyContent="center"
         >
-          <RecipeCard clickFn={clickFn} recipe={recipe} />
+          <RecipeCard recipeClick={recipeClick} recipe={recipe} />
         </Box>
       ))}
     </Flex>
