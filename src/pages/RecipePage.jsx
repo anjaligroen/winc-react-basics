@@ -17,9 +17,11 @@ import { TotalNutrients } from "../components/TotalNutrients";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 
 export const RecipePage = ({ recipe, backClick }) => {
+  //Destructured the recipe data to keep the code more readable:
   const { image, label, ingredientLines, totalTime, dietLabels, cautions } =
     recipe.recipe;
 
+  // Grid is responsive.
   return (
     <Grid
       templateAreas={{
@@ -87,12 +89,12 @@ export const RecipePage = ({ recipe, backClick }) => {
         <Divider my={4} />
 
         {/*Ingredient List */}
-        <Heading size="md" color="teal.700" marginBottom={2}>
+        <Heading size="md" color="teal.800" marginBottom={2}>
           Ingredients:
         </Heading>
         <VStack align="start" spacing={2} color="teal.900">
           {ingredientLines.map((ingredient, index) => (
-            <Checkbox key={index} colorScheme="green">
+            <Checkbox key={index} colorScheme="teal">
               {ingredient}
             </Checkbox>
           ))}
@@ -100,9 +102,11 @@ export const RecipePage = ({ recipe, backClick }) => {
       </GridItem>
 
       {/* Health Labels, Cautions, and diet information*/}
+      {/* Labels are wrapped in Flex here instead of the ui components because it to keeps them aligned better. */}
+      {/* There should be no expectation for data when it is not available. */}
       <GridItem area="labels" p={3}>
         <Divider my={4}></Divider>
-        <Heading size="xsm" color="teal.700" py={3}>
+        <Heading size="xsm" color="teal.800" py={3}>
           Health labels
         </Heading>
         <Flex wrap={"wrap"} align={"flex-start"} gap={3}>
@@ -110,7 +114,7 @@ export const RecipePage = ({ recipe, backClick }) => {
         </Flex>
 
         {cautions.length > 0 && (
-          <Heading size="sm" color="teal.700" py={3}>
+          <Heading size="sm" color="teal.800" py={3}>
             Cautions
           </Heading>
         )}
@@ -119,7 +123,7 @@ export const RecipePage = ({ recipe, backClick }) => {
         </Flex>
 
         {dietLabels.length > 0 && (
-          <Heading size="sm" color="teal.700" py={3}>
+          <Heading size="sm" color="teal.800" py={3}>
             Diet
           </Heading>
         )}
@@ -127,7 +131,7 @@ export const RecipePage = ({ recipe, backClick }) => {
           <DietLabels recipe={recipe} />
         </Flex>
 
-        {/* Nutrient list */}
+        {/* Nutrient list - also handled in a seperate component for readability */}
         <Divider my={8} />
         <TotalNutrients recipe={recipe} color="teal.800" />
       </GridItem>

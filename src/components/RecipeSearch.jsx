@@ -6,19 +6,10 @@ import { Toggle } from "./ui/Toggle";
 import { InputUI } from "./ui/InputUI";
 
 export const RecipeSearch = ({ recipeClick }) => {
+  // state and the handlers are here and passed on through props to keep InputUI and Toggle reusable.
   const [searchField, setSearchField] = useState("");
   const [isVegan, setIsVegan] = useState(false);
   const [isVegetarian, setIsVegetarian] = useState(false);
-
-  const matchedRecipes = data.hits.filter((recipe) =>
-    recipe.recipe.label.toLowerCase().includes(searchField.toLowerCase())
-  );
-
-  const filteredRecipes = matchedRecipes.filter(
-    (recipe) =>
-      (isVegan ? recipe.recipe.healthLabels.includes("Vegan") : true) &&
-      (isVegetarian ? recipe.recipe.healthLabels.includes("Vegetarian") : true)
-  );
 
   const handleChange = (event) => {
     setSearchField(event.target.value);
@@ -29,6 +20,20 @@ export const RecipeSearch = ({ recipeClick }) => {
   const handleVegetarianToggle = (isVegetarian) => {
     setIsVegetarian(isVegetarian);
   };
+
+  //The matchedRecipes are the recipes that follow from the userinput in the search bar
+  //After, the filteredRecipes filter the active or inactive Vegan and Vegetarian toggles from the matchedRecipes
+  //Last, I use the filteredRecipes to be mapped out and displayed within the RecipeList component.
+
+  const matchedRecipes = data.hits.filter((recipe) =>
+    recipe.recipe.label.toLowerCase().includes(searchField.toLowerCase())
+  );
+
+  const filteredRecipes = matchedRecipes.filter(
+    (recipe) =>
+      (isVegan ? recipe.recipe.healthLabels.includes("Vegan") : true) &&
+      (isVegetarian ? recipe.recipe.healthLabels.includes("Vegetarian") : true)
+  );
 
   return (
     <Box

@@ -1,6 +1,7 @@
 import { Box, Text } from "@chakra-ui/react";
 
 export const TotalNutrients = ({ recipe, ...styleProps }) => {
+  //Destructuring the recipe's totalNutrients object data:
   const { ENERC_KCAL, FAT, CHOCDF, PROCNT, FIBTG, SUGAR } =
     recipe.recipe.totalNutrients;
 

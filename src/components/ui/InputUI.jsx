@@ -1,5 +1,7 @@
 import { Input } from "@chakra-ui/react";
 
+//Made this InputUI component seperate because I want to keep the RecipeSearch component more clean.
+
 export const InputUI = ({ value, onChange, placeholder, ...styleProps }) => {
   return (
     <Input

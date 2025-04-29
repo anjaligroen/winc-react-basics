@@ -14,6 +14,7 @@ import { HealthLabels } from "./ui/HealthLabels";
 export const RecipeCard = ({ recipe, recipeClick }) => {
   const { image, label, mealType, dishType } = recipe.recipe;
 
+  //in the onClick prop the recipe is passed on in the recipeClick prop towards the handleRecipeButton in App.
   return (
     <Card
       onClick={() => recipeClick(recipe)}
