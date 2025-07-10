@@ -1,4 +1,4 @@
-# Winc Academy – React Basics: Recipe Generator
+# Winc Academy – React Basics: Recipe Searchbar 
 
 This project is part of the Winc Academy curriculum and contains several beginner-level React exercises. 
 It demonstrates the foundational concepts of React by building small components and interactive UIs.
