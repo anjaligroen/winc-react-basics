@@ -11,7 +11,8 @@ It demonstrates the foundational concepts of React by building small components 
 - Handling user input and events
 - Component reusability and props
 - Styling with [Chakra UI](https://chakra-ui.com/)
-
+- Responsive app design
+  
 ## Technologies
 
 - React
